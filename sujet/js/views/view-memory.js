@@ -14,11 +14,15 @@ export class ViewMemory extends Observer
 
     displayCard(){
         
-        const cardsElement = document.querySelector(".cards");
+        const cardsElement = document.querySelector(".cards"); //Problème de . pour la classe
         const cardElement = document.createElement("div");
         cardElement.classList.add("card");
         cardElement.textContent = String.fromCodePoint(this.#controllerMemory.card.value);
         cardsElement.appendChild(cardElement);
+
+        cardElement.addEventListener("click", () => {
+            this.#controllerMemory.createCard();
+        });
     }
 
     notify()

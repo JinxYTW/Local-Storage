@@ -14,6 +14,8 @@ export class ControllerMemory extends Notifier
         const min = 0x1F90C; 
         const max = 0x1F9FF;
 
+        
+
         const value = Math.floor(Math.random() * (max - min + 1)) + min;
 
         this.#card = new Card(value);
