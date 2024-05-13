@@ -1,29 +1,32 @@
-import { Card } from "../models/card.js";
-//import { Memory } from "../models/memory.js";
+//import { Card } from "../models/card.js";
+import { Memory } from "../models/memory.js";
 import { Notifier } from "../patterns/notifier.js";
 
 export class ControllerMemory extends Notifier
 {
-    #card ;
+    #memory;
+    
     constructor()
     {
+
         super();
+        this.#memory = new Memory();//Crée une instance de Memory possédant les caractéristiques de Memory
+    
     }
 
-    createCard(){
-        const min = 0x1F90C; 
-        const max = 0x1F9FF;
-
-        
-
-        const value = Math.floor(Math.random() * (max - min + 1)) + min;
-
-        this.#card = new Card(value);
-        this.notify("cardCreated");
+    newGame(){
+        this.#memory.newGame(10);
+        this.notify();//Magie magie
     }
 
-    get card()
-    {
-        return this.#card;
-    }   
+    //Ajout de getter afin d'utiliser les méthodes de Memory
+    
+    getCardsNumber(){
+        return this.#memory.getCardsNumber(); 
+    }
+
+    getCard(index){
+        return this.#memory.getCard(index);
+    }
+      
 }

@@ -1,3 +1,5 @@
+import { Card } from './../models/card.js';
+
 class Memory{
     #cards
 
@@ -31,3 +33,5 @@ class Memory{
 
 
 }
+
+export { Memory };

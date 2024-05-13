@@ -12,21 +12,27 @@ export class ViewMemory extends Observer
         this.#controllerMemory.addObserver(this);
     }
 
-    displayCard(){
+    displayCard(card){
         
         const cardsElement = document.querySelector(".cards"); //Problème de . pour la classe
         const cardElement = document.createElement("div");
         cardElement.classList.add("card");
-        cardElement.textContent = String.fromCodePoint(this.#controllerMemory.card.value);
+        cardElement.textContent = String.fromCodePoint(card.value);
         cardsElement.appendChild(cardElement);
 
-        cardElement.addEventListener("click", () => {
-            this.#controllerMemory.createCard();
-        });
+        
+    }
+
+    displayCards(){
+        const cardsElement = document.querySelector(".cards");
+        cardsElement.innerHTML = "";
+        for(let i = 0; i < this.#controllerMemory.getCardsNumber(); i++){
+            this.displayCard(this.#controllerMemory.getCard(i));
+        }
     }
 
     notify()
     {
-        this.displayCard();
+        this.displayCards();
     }
 }
