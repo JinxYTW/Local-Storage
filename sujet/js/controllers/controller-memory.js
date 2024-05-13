@@ -17,10 +17,11 @@ export class ControllerMemory extends Notifier
     newGame(){
         this.#memory.newGame(10);
         this.notify();//Magie magie
+        this.saveGame();
     }
 
     //Ajout de getter afin d'utiliser les méthodes de Memory
-    
+
     getCardsNumber(){
         return this.#memory.getCardsNumber(); 
     }
@@ -28,5 +29,10 @@ export class ControllerMemory extends Notifier
     getCard(index){
         return this.#memory.getCard(index);
     }
+
+    saveGame(){
+        localStorage.setItem("memory", JSON.stringify(this.#memory));
+        
+    }   
       
 }
