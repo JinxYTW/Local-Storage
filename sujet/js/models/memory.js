@@ -11,10 +11,15 @@ class Memory{
         this.#cards = [];
         const min = 0x1F90C;
         for(let i = 0; i < pairsNumber; i++){
-            this.#cards.push(new Card(i+min));
-            this.#cards.push(new Card(i+min));
+            const card1 = new Card(i+min);
+            const card2 = new Card(i+min);
+    
+            const index1 = Math.floor(Math.random() * (this.#cards.length + 1));
+            this.#cards.splice(index1, 0, card1);
+    
+            const index2 = Math.floor(Math.random() * (this.#cards.length + 1));
+            this.#cards.splice(index2, 0, card2);
         }
-        
     }
 
     getCardsNumber(){
