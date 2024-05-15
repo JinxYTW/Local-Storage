@@ -30,14 +30,20 @@ export class ControllerMemory extends Notifier
         return this.#memory.getCard(index);
     }
 
+    showCard(index){
+        this.#memory.showCard(index);
+        this.notify();
+        this.saveGame();
+    }
+
     saveGame(){
-        localStorage.setItem('memory', JSON.stringify(this.#memory.toData()));
+        sessionStorage.setItem('memory', JSON.stringify(this.#memory.toData()));
 
         
     }   
 
     loadGame(){
-        const data = JSON.parse(localStorage.getItem('memory'));
+        const data = JSON.parse(sessionStorage.getItem('memory'));
         if(data){
             this.#memory.fromData(data);
             this.notify();

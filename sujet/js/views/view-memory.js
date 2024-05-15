@@ -12,15 +12,26 @@ export class ViewMemory extends Observer
         this.#controllerMemory.addObserver(this);
     }
 
-    displayCard(card){
-        
-        const cardsElement = document.querySelector(".cards"); //Problème de . pour la classe
+    displayCard(card, index){
+        const cardsElement = document.querySelector(".cards");
         const cardElement = document.createElement("div");
         cardElement.classList.add("card");
         cardElement.textContent = String.fromCodePoint(card.value);
+        if(card.faceHidden){
+            cardElement.classList.add("hidden");
+        }
+        else{
+            cardElement.classList.add("flip");
+        }
+    
+        cardElement.addEventListener('click', () => {
+            console.log("Click !");
+            const index = Array.from(cardsElement.children).indexOf(cardElement);
+            console.log(index);
+            this.#controllerMemory.showCard(index);
+        });
+    
         cardsElement.appendChild(cardElement);
-
-        
     }
 
     displayCards(){

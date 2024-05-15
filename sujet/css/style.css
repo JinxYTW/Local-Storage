@@ -37,7 +37,14 @@ body {
     background-color: #fff;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 
+    transition: transform 0.5s, opacity 0.5s;
+    transform-style: preserve-3d;
+
     cursor: pointer;
+}
+
+.card.flip {
+    transform: rotateY(180deg);
 }
 
 .card.hidden::after {

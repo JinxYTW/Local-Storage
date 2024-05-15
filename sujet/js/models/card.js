@@ -1,5 +1,6 @@
 class Card {
     #value;
+    #faceHidden = true;
 
     constructor(value) {
         this.#value = value;
@@ -9,9 +10,27 @@ class Card {
         return this.#value;
     }
 
+    get faceHidden() {
+        return this.#faceHidden;
+    }
+
+    show() {
+        this.#faceHidden = false;
+    }
+
+    hide() {
+        this.#faceHidden = true;
+    }
+
+    
+
+
+
     toData(){
         const cardData = {
-            value: this.#value
+            value: this.#value,
+            faceHidden: this.#faceHidden
+
         };
         return cardData;
     }
