@@ -31,8 +31,28 @@ export class ControllerMemory extends Notifier
     }
 
     saveGame(){
-        localStorage.setItem("memory", JSON.stringify(this.#memory));
+        localStorage.setItem('memory', JSON.stringify(this.#memory.toData()));
+
         
     }   
+
+    loadGame(){
+        const data = JSON.parse(localStorage.getItem('memory'));
+        if(data){
+            this.#memory.fromData(data);
+            this.notify();
+            return true;
+        }
+        return false;
+    }
+
+    start() {
+        if (!this.loadGame()) {
+            this.newGame();
+            
+        }
+    }
+
+    
       
 }

@@ -32,6 +32,24 @@ class Memory{
         
     }
 
+    toData(){
+
+        const memoryData = this.#cards.map(card => card.toData());
+        return memoryData;
+
+        
+
+        
+    }
+
+    fromData(data){
+        this.#cards = data.map(cardData => {
+            const card = new Card();
+            card.fromData(cardData);
+            return card;
+        });
+    }
+
 
 
 
